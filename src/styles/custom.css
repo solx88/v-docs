@@ -1,0 +1,31 @@
+/* src/styles/custom.css */
+
+/* 1. Set the header height to 35px */
+html[data-theme="light"] {
+  --sl-nav-height: 40px;
+}
+html[data-theme="dark"] {
+  --sl-nav-height: 40px;
+}
+
+/* * 2. Set ALL header buttons to 25px
+ * We target the button element that ALSO has the class.
+ * This is more specific and will override the defaults.
+*/
+header button.menu-button,
+header button.theme-toggle,
+header button.search-toggle {
+  height: 25px;
+  width: 25px;
+  padding: 0; /* Remove padding */
+}
+
+/* * 3. Adjust the icon size (SVG) inside the buttons
+ * We use the same specific selectors to target the SVG inside.
+*/
+header button.menu-button svg,
+header button.theme-toggle svg,
+header button.search-toggle svg {
+  height: 18px;
+  width: 18px;
+}
