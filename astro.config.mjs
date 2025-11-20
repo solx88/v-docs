@@ -6,6 +6,9 @@ import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://solx88.github.io'",
+  base: "/v-docs",
+
   integrations: [
     starlight({
       title: "My Docs",
