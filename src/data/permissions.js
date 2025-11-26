@@ -1,7 +1,7 @@
 export const permissions = {
   // Work like blacklist, not listed mean everyone can access
 
-  "/phieuinbaocao/": ["lva"],
+  "/phieuinbaocao/": ["lva", "sys.admin"],
   "/hisl2/": ["lva", "sys.admin", "admin"],
   "/hisl2duoc/": ["lva", "sys.admin", "admin", "benhvien"],
   "/hisl2cls/": ["lva", "sys.admin", "admin", "benhvien"],
