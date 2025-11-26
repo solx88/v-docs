@@ -1,0 +1,210 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import users from '@/data/users.json';
+const base = import.meta.env.BASE_URL;
+---
+
+<StarlightPage frontmatter={{ title: 'Login', template: 'splash' }}>
+  
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="icon-header">
+        🔐
+      </div>
+      
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Please sign in to access the documentation</p>
+
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="e.g. admin" autocomplete="off" />
+      </div>
+
+      <button id="loginBtn">Sign In</button>
+      
+      <div id="errorMsg" class="error-message">
+        User not found. Please try again.
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ users, base }}>
+    const btn = document.getElementById('loginBtn');
+    const input = document.getElementById('username');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // Function to handle login
+    const handleLogin = () => {
+      const enteredName = input.value.trim();
+      const user = users.find(u => u.username === enteredName);
+
+      if (user) {
+        localStorage.setItem('currentUser', user.username);
+        localStorage.setItem('currentRole', user.role);
+        
+        // Remove trailing slash from base
+        const cleanBase = base.replace(/\/$/, "");
+        // Redirect to your default page (e.g., gioithieu)
+        window.location.href = cleanBase + '/gioithieu';
+      } else {
+        errorMsg.classList.add('visible');
+        input.classList.add('input-error');
+      }
+    };
+
+    btn.addEventListener('click', handleLogin);
+
+    // Allow pressing "Enter" to login
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleLogin();
+    });
+
+    // Remove error when user types
+    input.addEventListener('input', () => {
+      errorMsg.classList.remove('visible');
+      input.classList.remove('input-error');
+    });
+  </script>
+
+</StarlightPage>
+
+<style>
+  /* 1. THE LAYOUT - Centers everything vertically & horizontally */
+  .login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Takes up most of the screen height */
+    width: 100%;
+  }
+
+  /* 2. THE CARD - Modern "Glass" or Solid look */
+  .login-card {
+    background-color: var(--sl-color-bg-nav); /* Starlight's secondary bg color */
+    border: 1px solid var(--sl-color-hairline);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  /* 3. TYPOGRAPHY */
+  .icon-header {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--sl-color-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  /* 4. INPUTS */
+  .input-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sl-color-gray-2);
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--sl-color-gray-5);
+    background-color: var(--sl-color-black);
+    color: var(--sl-color-white);
+    font-size: 1rem;
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  input:focus {
+    border-color: var(--sl-color-accent);
+    box-shadow: 0 0 0 3px var(--sl-color-accent-low);
+  }
+
+  input.input-error {
+    border-color: var(--sl-color-red);
+  }
+
+  /* 5. BUTTON */
+  button {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--sl-color-accent);
+    color: var(--sl-color-text-accent);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  button:hover {
+    background-color: var(--sl-color-accent-high);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* 6. ERROR MESSAGE */
+  .error-message {
+    margin-top: 1rem;
+    color: var(--sl-color-red);
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s;
+  }
+
+  .error-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<style is:global>
+  /* Hides the top navigation bar */
+  header.header { display: none !important; }
+  /* Hides mobile menu elements */
+  mobile-starlight-menu { display: none !important; }
+  /* Hides the "Skip to content" link */
+  .skip-link { display: none !important; }
+  /* Ensure the background covers the whole page */
+  .page { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+
+  /* 1. Hide the specific Page Title ID */
+  h1#_top {
+    display: none !important;
+  }
+
+  /* 2. Fallback: Hide any H1 that is a direct child of the content panel */
+  .content-panel > h1 {
+    display: none !important;
+  }
+
+  /* ... keep your other hides (header, etc.) ... */
+  header.header, mobile-starlight-menu, .skip-link { 
+    display: none !important; 
+  }
+</style>

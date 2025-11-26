@@ -1,0 +1,325 @@
+[
+  {
+    "mach": "PHARMA_CHAN_DUYET_DTBS_KHI_THIEU_TVT",
+    "mota": "Chặn duyệt phiếu dự trù kho, BS tủ trực, dự trù vật tư tiêu hao khoa phòng, nếu số lượng khả dụng nhỏ hơn số lượng yêu cầu.\n-1:Mặc đinh là không chặn\n1,2,3,4,..: Chặn theo hình thức xuất nhập thuốc",
+    "tag": "#duyetphieu #chan"
+  },
+  {
+    "mach": "PHARMA_GIUAO_XUAT_TIEUHOAKHOAPHONG",
+    "mota": "Cấu hình cho phép giữ ảo với phiếu xuất dự trù tiêu hao khoa phong\n0: mặc định ko giữ ảo\n1: giữ ảo",
+    "tag": ""
+  },
+  {
+    "mach": "PHARMA_GIUAO_KHILINHBU_TT",
+    "mota": "0: không giữ ảo \n1: giữ ảo cho phiếu lĩnh bù tủ trực khi sửa phiếu lĩnh bù\n2: giữ ảo cho phiếu lĩnh bù không theo quy trình sửa phiếu",
+    "tag": ""
+  },
+  {
+    "mach": "PHARMA_GIUAO_KHIDUTRU_BOSUNG",
+    "mota": "Cấu hình cho phép khoa thực hiện giữ ảo thuốc vật tư khi thực hiện dự trù kho hoặc bổ sung tủ trực.\n0: Không cho phép.\n1: Cho phép.",
+    "tag": ""
+  },
+  {
+    "mach": "PHARMA_HIENTHI_MATHAUNAMTHAU",
+    "mota": "Cấu hình hiển thị ngày qđ trong combobox Mã thầu trong DM thuốc\nGiá trị :\n     1 : có hiển thị thêm ngày quyết định\n     Còn lại mặc định ko hiển thị",
+    "tag": ""
+  },
+  { "mach": "PHARMA_DUYETKTVP_XUATNGOAITRU", "mota": "", "tag": "" },
+  { "mach": "HIS_INDONTHUOC_KHI_LUU_NTU", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_CHONKHO", "mota": "", "tag": "" },
+  { "mach": "HIS_CHECK_DON_LE", "mota": "", "tag": "" },
+  { "mach": "NTU_DONG_BA_CHECK_DUYET_DUOC", "mota": "", "tag": "" },
+  { "mach": "SOPHIEU_DTDT", "mota": "", "tag": "" },
+  { "mach": "TIMKIEM_BN_KEDON_NTU", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_THEO_ICD", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_LOADKHO_HAOPHI", "mota": "", "tag": "" },
+  { "mach": "PHARMA_BOSUNG_THEOLO", "mota": "", "tag": "" },
+  {
+    "mach": "HIS_TACH_PHIEU_LINH",
+    "mota": "= 1 thì mới tách gây ngiện hướng thần",
+    "tag": ""
+  },
+  {
+    "mach": "KE_THUOC_LAY_DUONGDUNG",
+    "mota": "Khi kê thuốc tự động lấy cách dùng trong danh mục thuốc nếu cách dùng đc nhập làm cách dùng khi kê thuốc\n0: Không sử dụng; 1: Sử dụng",
+    "tag": ""
+  },
+  {
+    "mach": "KT_NGT_KEDON_BH2",
+    "mota": "Chặn kê 2 đơn trên cùng nhóm thuốc ngoại trú\n0: Không chặn \n1: Có chặn",
+    "tag": ""
+  },
+  { "mach": "KE_THUOC_CHECK_HC_THEOBN", "mota": "1950", "tag": "" },
+  { "mach": "NGT_CHECKCONTHUOC22", "mota": "", "tag": "" },
+  { "mach": "NGT_CHECKCONTHUOC_CT", "mota": "", "tag": "" },
+  { "mach": "NGT_CHECK_BN_CONTHUOC", "mota": "", "tag": "" },
+  { "mach": "NTU_PDT_CHECK_TVT", "mota": "", "tag": "" },
+  { "mach": "PHARMA_KETTHUCBA_COHOANTRA", "mota": "", "tag": "" },
+  { "mach": "QLLT_BUKHONGLAYTHUOCDUYETLE", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_MN_LOAI ", "mota": "", "tag": "" },
+  { "mach": "PHARMA_TONGHOP_CHAN", "mota": "", "tag": "" },
+  { "mach": "PHARMA_BANTHUOC_VIENPHI", "mota": "", "tag": "" },
+  {
+    "mach": "PHARMA_USER_HUYDON_NGT_QH",
+    "mota": "Danh sách user được duyệt đơn quá 6 ngày",
+    "tag": ""
+  },
+  { "mach": "NGT_CACH_DUNG_THUOC", "mota": "", "tag": "" },
+  { "mach": "PHARMA_NHOMTVT_THIEU_SOLO_HSD", "mota": "", "tag": "" },
+  { "mach": "PHARMA_THANGDU_THUOC", "mota": "", "tag": "" },
+  { "mach": "PHARMA_CHECK_HSD_BUTUTRUC", "mota": "", "tag": "" },
+  { "mach": "HIS_TITLE_3", "mota": "", "tag": "" },
+  {
+    "mach": "PHARMA_DOI_NGAYDUYET",
+    "mota": "??????????????????????????",
+    "tag": ""
+  },
+  { "mach": "PHARMA_THOIGIAN_LAY_PHIEUYC", "mota": "", "tag": "" },
+  { "mach": "SONGAY_KETHUOC", "mota": "", "tag": "" },
+  { "mach": "HIS_KE_NHIEUNGAY", "mota": "", "tag": "" },
+  { "mach": "SONGAY_KETHUOC", "mota": "", "tag": "" },
+  { "mach": "PHARMA_KHOKETHEOKHOAPHONG ", "mota": "", "tag": "" },
+  { "mach": "HIS_KHOA_KHONG_TONGHOP_PHIEULINH ", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_STT_NSD", "mota": "", "tag": "" },
+  { "mach": "LOAD_KHO_KEDONCU ", "mota": "", "tag": "" },
+  {
+    "mach": "/vnpthis/main/manager.jsp?func=../duoc/DUC70_KhoaDanhSachKho",
+    "mota": "Chức năng khóa phiếu",
+    "tag": ""
+  },
+  { "mach": "PHARMA_BATBUOC_NHAPTHAUGHEP", "mota": "", "tag": "" },
+  { "mach": "PHARMA_HIENTHIKHO_THEOKHOAPHONG", "mota": "", "tag": "" },
+  { "mach": "PHARMA_CHONKEKHOAPHONG", "mota": "", "tag": "" },
+  { "mach": "PHARMA_DUYET_PHATTHUOC", "mota": "", "tag": "" },
+  { "mach": "PHARMA_DUYETNHIEUPHIEU", "mota": "", "tag": "" },
+  { "mach": "PHARMA_GODUYET_THEO_NGUOITAO", "mota": "", "tag": "" },
+  { "mach": "PHARMA_CHECK_HSD_BUTUTRUC", "mota": "", "tag": "" },
+  {
+    "mach": "UPdate DM duoc",
+    "mota": "/vnpthis/main/manager.jsp?func=../duoc/DUC103M002_IMPORT_DMTHUOCVATTU",
+    "tag": ""
+  },
+  { "mach": "NTU_COPY_PDT_TGCD_CU", "mota": "", "tag": "" },
+  {
+    "mach": "KETHUOC_ICD_DT",
+    "mota": "Đồng bộ thời gian với tờ điều trị",
+    "tag": ""
+  },
+  { "mach": "HIS_SHOW_NGAYSD_GIA", "mota": "", "tag": "" },
+  { "mach": "NGT_BADA_CHAN_XT", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_NHAPPHANSO", "mota": "", "tag": "" },
+  {
+    "mach": "HIS_GRID_TT_THUOCTRONGNGAY",
+    "mota": "HIển thị đánh dấu ở danh sách BN điều trị nội trú nếu có đơn thuốc kê trong ngày",
+    "tag": ""
+  },
+  { "mach": "LOAD_TGDUNG_THEO_TGCD=0", "mota": "", "tag": "" },
+  { "mach": "PHARMA_TONGTIEN_GIANHAP", "mota": "", "tag": "" },
+  { "mach": "PHARMA_SONGAY_TIMKIEM_CHUCNANG", "mota": "", "tag": "" },
+  { "mach": "VPI_SONGAY_XUAT_DL", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_NHAPPHANSO", "mota": "", "tag": "" },
+  { "mach": "HIS_CAPTHUOC_LE_DTNGT", "mota": "", "tag": "" },
+  { "mach": "NTU_MENU_PDT_VATTU", "mota": "", "tag": "" },
+  { "mach": "IN_TACHDONMUA_NGOAI", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_INTACH_NHATHUOC ", "mota": "", "tag": "" },
+  { "mach": "KE_THUOC_KHOA_PHONG_DIKEM_DVKT", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_INDON_MN", "mota": "", "tag": "" },
+  {
+    "mach": "/danhmuc/UTILS_UPL_TLEE",
+    "mota": "Em đã xây dựng công cụ để ace nhà mình tải jasper, xml về tại đường dẫn: /danhmuc/UTILS_UPL_TLEE\nNgoài ra các anh chị có thể kiểm tra func trên product, chạy thử func để kiểm tra lỗi tại đường dẫn: /danhmuc/TOOL_CHECK_FUNC",
+    "tag": ""
+  },
+  { "mach": "/danhmuc/TOOL_CHECK_FUNC", "mota": "", "tag": "" },
+  { "mach": "SOLAN_TUDONG_MOBENHAN", "mota": "", "tag": "" },
+  {
+    "mach": "/vnpthis/main/manager.jsp?func=../danhmuc/CA_PHIEUNGOAI ạ",
+    "mota": "",
+    "tag": ""
+  },
+  {
+    "mach": "EMR_LOAI_BA_RPT_CODE",
+    "mota": "ký bệnh án luồng khác",
+    "tag": ""
+  },
+  { "mach": "KETHUOC_KYCA", "mota": "", "tag": "" },
+  { "mach": "HIS_KYSO_WIDGET_XN_ALL", "mota": "", "tag": "" },
+  { "mach": "HIS_KYSO_WIDGET_CĐHA_ALL", "mota": "", "tag": "" },
+  {
+    "mach": "Hiện tại mẫu in list sẽ gọi vào mẫu in dreport và replace PHIEU thành LIST nhé chị nên hiện tại cấu hình như này không nhận mẫu LGG đâu ạ",
+    "mota": "",
+    "tag": ""
+  },
+  { "mach": "NTU_PDT_CHECKXOA_USER", "mota": "", "tag": "" },
+  { "mach": "TRATHUOC_CHECK_TK", "mota": "", "tag": "" },
+  {
+    "mach": "/vnpthis/main/manager.jsp?func=../danhmuc/DMC142_Bo_Dichvu",
+    "mota": "",
+    "tag": ""
+  },
+  {
+    "mach": "NTU02D204_NGAY_TAO",
+    "mota": "Ẩn cột ngày tạo trên form thêm phiếu, chỉ hiện cột ngày thwucj hiện",
+    "tag": ""
+  },
+  { "mach": "HIS_KYSO_WIDGET_CĐHA_ALL", "mota": "", "tag": "" },
+  { "mach": "HIS_KYSO_WIDGET_XN_ALL", "mota": "", "tag": "" },
+  { "mach": "NTU_PTTT_WID_MULTI", "mota": "", "tag": "" },
+  { "mach": "CDHA_HIDDEN_KYSO_ALL", "mota": "", "tag": "" },
+  { "mach": "TABTHUOC_HIENTHI_CHECKBOX", "mota": "", "tag": "" },
+  { "mach": "CDDV_USING_REPORT_CODE", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_KYSO_TACHMOI", "mota": "", "tag": "" },
+  { "mach": "DTDT_DAY_DONTHUOC", "mota": "", "tag": "" },
+  { "mach": "PHARMA_NT_CHONCONGDUOC", "mota": "", "tag": "" },
+  { "mach": "HIS_KYCHOT_PHIEUKQ", "mota": "", "tag": "" },
+  { "mach": "NTU_PDT_GET_CLS_NGT", "mota": "", "tag": "" },
+  { "mach": "CDDV_IN_HUONGDAN_CLS", "mota": "", "tag": "" },
+  { "mach": "HIS_KYSO_CHIDINHDICHVU_ALL", "mota": "", "tag": "" },
+  { "mach": "NTU_PDT_CHECK_ADMINCA", "mota": "", "tag": "" },
+  { "mach": "HIS_PATIENT_SIGN_METHOD", "mota": "", "tag": "" },
+  { "mach": "HIS_DIEUDUONGDB_CATYPE", "mota": "", "tag": "" },
+  { "mach": "CDDV_TGDUKIENTH", "mota": "", "tag": "" },
+  { "mach": "CDDV_TGDUKIENTH_DUE", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_ICD_TREN30NGAY", "mota": "", "tag": "" },
+  {
+    "mach": "BDCD_FIX_CSYTID",
+    "mota": " Cấu hình thiết lập hiển thị giao diện biểu đồ chuyển dạ theo CSYTID (là csytid của site cũ) cho những site mới dựng",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  {
+    "mach": "BDCD_EDIT_GIODO",
+    "mota": "Cấu hình thiết lập cho phép nhập giờ đo biểu đồ chuyển dạ",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  {
+    "mach": "BDCD_MODEVIEW",
+    "mota": "Điều chỉnh các chỉ số chuyển dạ xuất phát điểm từ điểm độ mở cổ tử cung",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  {
+    "mach": "STEP_BIEUDOCHUYENDA",
+    "mota": "Đơn vị thời gian tính bước biểu đồ chuyển dạ",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  {
+    "mach": "NTU02D113_TEMPLATE",
+    "mota": "Cấu hình fix link chức năng biểu đồ chuyển dạ",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  {
+    "mach": "NTU02D113_BIEUDOCHUYENDA_BS",
+    "mota": "Biểu đồ chuyển dạ cho phép tìm kiếm nhập Người theo dõi",
+    "tag": "#noitru #bieudochuyenda"
+  },
+  { "mach": "HIS_DAYDONTHUOC_NOITRU_EMR", "mota": "", "tag": "" },
+  { "mach": "HIS_CHAN_NGAY_DV", "mota": "", "tag": "" },
+  { "mach": "CHAN_NGAYDV_CHOPHEP_VP", "mota": "", "tag": "" },
+  { "mach": "KE_THUOC_DY_CACHDUNG130", "mota": "", "tag": "" },
+  {
+    "mach": "VPI_MADTKCB_NGOAITRU;VPI_MADTKCB_CAPCUU;VPI_TUYEN_BV",
+    "mota": "",
+    "tag": ""
+  },
+  {
+    "mach": "KETHUOC_SHOW_DOTKE  ",
+    "mota": "KETHUOC_SHOW_DOTKE = 1 đối với bn khám bệnh, =2 đối với tất cả các loại tiếp nhận",
+    "tag": ""
+  },
+  { "mach": "NTU_INPHIEU_CONGKHAI", "mota": "", "tag": "" },
+  {
+    "mach": "NTU02D199_GETDICHVU_PHCNLSN 1",
+    "mota": "cấu hình nào cập nhật PTTT xong nó không ánh xạ kq qua form thực hiện PHCN nhỉ",
+    "tag": ""
+  },
+  { "mach": "NTU02D199_GETDICHVU 0", "mota": "", "tag": "" },
+  { "mach": "SHOW_AND_HIDDEN_THEMPHIEU", "mota": "", "tag": "" },
+  { "mach": "KETHUOC_TUONGTAC_THUOC", "mota": "", "tag": "" },
+  {
+    "mach": "NTU_PGMHS_THUOC_DVT",
+    "mota": "Phiếu gây mê hồi sức: lấy thêm thông tin DVT cho thuốc, dịch truyền",
+    "tag": ""
+  },
+  {
+    "mach": "/vnpthis/main/manager.jsp?func=../danhmuc/DMC_DM_DIALOG",
+    "mota": "Set size popup",
+    "tag": ""
+  },
+  {
+    "mach": "PHARMA_CHECK_NGAYCHIDINH_MBP ",
+    "mota": "Cho phép/chặn kê thuốc trước ngày nhập kho",
+    "tag": ""
+  },
+  {
+    "mach": "https://bvhatinh.vncare.vn/vnpthis/main/manager.jsp?func=../danhmuc/IMPORT_LOGOBV",
+    "mota": "Import logo bệnh viện",
+    "tag": ""
+  },
+  {
+    "mach": "HIS_KHOA_KHONG_TONGHOP_PHIEULINH",
+    "mota": "Danh sách các khoa không thực hiện tổng hợp phiếu lĩnh với bệnh nhân điều trị ngoại trú, bệnh nhân của các mã khoa có trong danh sách này lĩnh thuốc như bệnh nhân ngoại trú. Giá trị của tham số có thể là: 'KUB','RHM'",
+    "tag": ""
+  },
+  {
+    "mach": "PHARMA_KHONG_HOANTRA_TUTRUC",
+    "mota": "",
+    "tag": "https://cntt.vnpt.vn/browse/L2PT-107835"
+  },
+  { "mach": "HIS_SHOW_CONTEXTMENU_QLBA", "mota": "", "tag": "" },
+  {
+    "mach": "INSQLBA_PHIEU_CONGKHAI_DICHVU",
+    "mota": "Thêm phiếu công khai dịch vụ vào QLBA khi ký chốt",
+    "tag": ""
+  },
+  { "mach": "HTH_HDKCB_NHOMDICHVU", "mota": "", "tag": "" },
+  { "mach": "HTH_HDKCB_MADICHVU", "mota": "", "tag": "" },
+  { "mach": "HTH_TODIEUTRI_KY", "mota": "", "tag": "" },
+  { "mach": "HTH_TODIEUTRI_HIENTHI_TVT", "mota": "", "tag": "" },
+  {
+    "mach": "PHARMA_SONGAY_TIMKIEM_CHUCNANG",
+    "mota": "Cấu hình cho phép tìm kiếm theo số ngày quy định ở các màn hình tìm kiếm của Dược\nMặc định 30 ngày",
+    "tag": ""
+  },
+  {
+    "mach": "HIS_TIMKIEM_NOITRU_SONGAY_MAX",
+    "mota": "Cấu hình thiết lập khoảng ngày tối đa cho phép tìm kiếm dữ liệu ở màn hình điều trị/hành chính nội/ngoại trú\nMặc định: 60 ngày",
+    "tag": ""
+  },
+  {
+    "mach": "HIS_TIMKIEM_BNNOITRU,HIS_TIMKIEM_BNNOITRU_KETTHUC",
+    "mota": "",
+    "tag": ""
+  },
+  {
+    "mach": "TCBN_TIMKIEM_SONGAY_MAX",
+    "mota": "Cấu hình thiết lập khoảng ngày tối đa cho phép tìm kiếm dữ liệu ở màn hình tra cứu bệnh nhân\nMặc định 60 ngày",
+    "tag": ""
+  },
+  {
+    "mach": "TCBN_TOIUU_TIMKIEM",
+    "mota": "0: Không thiết lập\nKhác 0: Bắt buộc chọn từ ngày đến ngày để tối ưu việc tìm kiếm. \n- option1: Set khoảng ngày từ thời điểm hiện tại để tự động fill từ ngày. Thiết lập: 1@khoang_ngay\nvd: 1@365 (tìm kiếm từ 1 năm trước đến thời điểm hiện tại)\n.\n- option2: Set cố định giá trị từ ngày. Thiết lập: 2@Ngay_thiet_lap (dd/mm/yyyy)\nvd: 2@01/01/2020 (tìm kiếm từ 01/01/2020 đến hiện tại).",
+    "tag": ""
+  },
+  { "mach": "CDT_TOIUU_TIMKIEM", "mota": "", "tag": "" },
+  {
+    "mach": "CDT_TOIUU_TIMKIEM_SONGAY_MAX",
+    "mota": "Mặc định 60 ngày",
+    "tag": ""
+  },
+  { "mach": "NGT_TIEPNHAN_TK_TG", "mota": "Mặc định 7 ngày", "tag": "" },
+  { "mach": "NGT_KHAMBENH_TK_TG", "mota": "Mặc định 7 ngày", "tag": "" },
+  { "mach": "VPI_SONGAY_TIMKIEM", "mota": "Mặc định 62 ngày", "tag": "" },
+  { "mach": "VPI_THUTIEN_INLOAIPHIEU", "mota": "", "tag": "" },
+  { "mach": "VPI_THUTIENTHUOC_DUYETDON", "mota": "", "tag": "" },
+  { "mach": "VPI_NHAP_GHICHU", "mota": "", "tag": "" },
+  { "mach": "VPI_BANTHUOC_MF", "mota": "", "tag": "" },
+  { "mach": "VPI_BANTHUOC_KHO_DF", "mota": "", "tag": "" },
+  { "mach": "PHARMA_KETNOI_CONG_BYT", "mota": "1", "tag": "" },
+  { "mach": "PHARMA_NT_CHONCONGDUOC", "mota": "1", "tag": "" },
+  { "mach": "PHARMA_BANTHUOC_GODUYET", "mota": "", "tag": "" },
+  { "mach": "PHARMA_BANTHUOC_TUDONGDUYET", "mota": "null", "tag": "" },
+  { "mach": "PHARMA_DAYCONG_NEW", "mota": "", "tag": "" },
+  { "mach": "VPI_VAT_TACH_HD", "mota": "", "tag": "" },
+  { "mach": "VPI_PAY_PMM_URL", "mota": "", "tag": "" },
+  { "mach": "VPI_LOAITHUOC_TACH_HD", "mota": "", "tag": "" },
+  { "mach": "PHARMA_NT_CHONCONGDUOC", "mota": "1", "tag": "" },
+  { "mach": "PHARMA_BANTHUOC_VIENPHI", "mota": "2", "tag": "" }
+]

@@ -20,24 +20,49 @@ export default defineConfig({
       //   },
       // ],
 
+      // Add this line to hide Next/Prev links everywhere
+      pagination: false,
+
+      // Turn off the TOC globally
+      tableOfContents: false,
+
       sidebar: [
+        { label: "Giới thiệu", link: "/gioithieu" },
         {
           label: "Phiếu in, báo cáo",
-          items: [],
+          // 2. Tell Starlight to automatically list all files in this folder
+          autogenerate: { directory: "phieuinbaocao" },
+        },
+        {
+          label: "HIS L2",
+          autogenerate: { directory: "hisl2" },
+        },
+        {
+          label: "HIS Dược",
+          autogenerate: { directory: "hisl2duoc" },
+        },
+        {
+          label: "HIS CLS",
+          autogenerate: { directory: "hisl2cls" },
         },
         {
           label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-            { label: "Example Guide1", slug: "guides/ex1" },
-          ],
+          autogenerate: { directory: "guides" },
         },
         {
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
+
+        { label: "Log Out", link: "/logout" },
       ],
+
+      components: {
+        // We replace the standard Head with our custom one (which includes the script)
+        // OR easier: Override the 'Footer' or 'Header' to inject the script.
+        // Let's use Header so it runs early.
+        Header: "./src/components/HeaderWithAuth.astro",
+      },
       plugins: [starlightThemeRapide(), starlightImageZoom()],
       customCss: ["./src/styles/custom.css"],
     }),

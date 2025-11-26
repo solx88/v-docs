@@ -1,0 +1,45 @@
+---
+title: Tổng quan
+slug: phieuinbaocao/tongquan # <--- This forces the URL
+description: Giới thiệu về phiếu in.
+sidebar:
+  order: 1
+
+# Enable TOC just for this page
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
+---
+
+import { Icon } from "@astrojs/starlight/components";
+
+Phần mềm HIS L2 sẽ sử dụng jasper để thực hiện các phiếu in,báo cáo phục vụ trong việc khám chữa bệnh. Phiếu in sẽ phục vụ trong việc khám chữa bệnh hàng ngày, báo cáo sẽ phục vụ cho mục đích quản lý.
+
+Ví dụ:<br />
+Bác sĩ chỉ định CLS, in ra phiếu chỉ định <Icon name="right-arrow" color="gold" style="vertical-align: middle;" /> Phiếu in<br />
+Lãnh đạo cần biết trong 1 tháng có bao nhiêu CLS đã chỉ định <Icon name="right-arrow" color="gold" style="vertical-align: middle;" /> Báo cáo
+
+|                  | Phiếu in                                  | Báo cáo                                   |
+| :--------------- | :---------------------------------------- | :---------------------------------------- |
+| Mục đích         | Phục vụ công tác khám chữa bệnh hàng ngày | Phục vụ công tác quản lý, báo cáo,kiểm kê |
+| Tham số đầu vào  | Mặc định theo chức năng in                | Cấu hình theo báo cáo                     |
+| Cấu hình báo cáo | Phải cấu hình trong group Phiếu in        | Có thể tùy chọn group                     |
+
+## Các công cụ cần thiết
+
+- Phần mềm tạo biểu mẫu báo cáo:<br/>
+  Ireport 5.6.0 (recomended, cần cài thêm ojdbc6.jar để kết nối oracle DB)<br/>
+  Jasper studio
+- Phần mềm database:<br/>
+  Oracle SQL Developer (recomended)
+- GlobalProtect: VPN dùng để kết nối với DB
+
+## Quy ước
+
+1. Các file phải đặt postfix theo quy định. Các báo cáo dùng chung cho tỉnh postfix là HTH. Các báo cáo dùng riêng cho các bệnh viện đặt postfix là mã bệnh viện.<br />
+   Báo cáo khoa dùng chung <Icon name="right-arrow" color="gold" style="vertical-align: middle;" /> BAOCAOKHOA_HTH<br />
+   Báo cáo khoa dùng riêng cho đa khoa tỉnh <Icon name="right-arrow" color="gold" style="vertical-align: middle;" /> BAOCAOKHOA_26320
+
+2. Đặt tên ngắn gọn, súc tích. Đồng bộ tên giữa file jasper, sql, phiếu CA để dễ quản lý. Giới hạn 30 ký tự để phù hợp với sql.
+
+3. Trên HIS L2, báo cáo của viện nào thì chỉ có viện đó được quyền chỉnh sửa ⇒ Báo cáo của viện nào thì đăng nhập tài khoản viện đó để tạo báo cáo, riêng báo cáo \_HTH thì dùng tài khoản của viện tỉnh để tạo.

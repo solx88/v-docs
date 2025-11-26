@@ -1,0 +1,90 @@
+---
+import { permissions } from '@/data/permissions';
+const base = import.meta.env.BASE_URL;
+---
+
+<script define:vars={{ permissions, base }}>
+  (function() {
+    console.log("--- AUTH GUARD STARTED ---");
+
+    const role = localStorage.getItem('currentRole');
+    const user = localStorage.getItem('currentUser');
+    
+    // Normalize path: remove trailing slash
+    const currentPath = window.location.pathname.replace(/\/$/, ""); 
+    
+    console.log("User:", user, "| Role:", role);
+    console.log("Current Path:", currentPath);
+
+    const cleanBase = base.replace(/\/$/, "");
+    const loginUrl = cleanBase + '/login';
+
+    // 1. GLOBAL LOGIN CHECK
+    if (!role && !currentPath.includes('/login')) {
+      console.log("No role found. Redirecting to login...");
+      window.location.href = loginUrl;
+      return; 
+    }
+
+    // 2. PAGE ACCESS CHECK
+    // Loop through permissions to find a match
+    let isRedirecting = false;
+
+    for (const [folder, allowedRoles] of Object.entries(permissions)) {
+      // Remove trailing slash from permission key
+      const cleanFolder = folder.replace(/\/$/, "");
+
+      // DEBUG: Show what we are comparing
+      // console.log(`Checking if '${currentPath}' contains '${cleanFolder}'`);
+
+      if (currentPath.includes(cleanFolder)) {
+        console.log(`MATCH FOUND: Path contains restricted folder: ${cleanFolder}`);
+        console.log(`Allowed roles for this folder:`, allowedRoles);
+
+        if (!allowedRoles.includes(role)) {
+          console.warn(`⛔ ACCESS DENIED! User '${role}' is not in allowed list.`);
+          console.warn(`Redirecting to: ${loginUrl}`);
+          isRedirecting = true;
+          window.location.href = loginUrl;
+          break; // Stop checking
+        } else {
+          console.log(`✅ ACCESS GRANTED for folder: ${cleanFolder}`);
+        }
+      }
+    }
+
+    if (isRedirecting) return; // Stop script if we kicked them out
+
+    // 3. SIDEBAR CLEANUP (Visuals)
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebarLinks = document.querySelectorAll('.sidebar-content a');
+
+      sidebarLinks.forEach(link => {
+        let href = link.getAttribute('href'); 
+        if (href) href = href.replace(/\/$/, "");
+
+        for (const [folder, allowedRoles] of Object.entries(permissions)) {
+          const cleanFolder = folder.replace(/\/$/, "");
+          
+          if (href && href.includes(cleanFolder)) {
+            if (!allowedRoles.includes(role)) {
+              const listItem = link.closest('li');
+              if (listItem) listItem.style.display = 'none';
+              link.setAttribute('data-auth-hidden', 'true');
+            }
+          }
+        }
+      });
+      
+      // Hide empty groups
+      const groups = document.querySelectorAll('.sidebar-content details');
+      groups.forEach(group => {
+        const allLinks = group.querySelectorAll('a');
+        const hiddenLinks = group.querySelectorAll('a[data-auth-hidden="true"]');
+        if (allLinks.length > 0 && allLinks.length === hiddenLinks.length) {
+          group.style.display = 'none';
+        }
+      });
+    });
+  })();
+</script>

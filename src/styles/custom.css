@@ -1,11 +1,126 @@
 /* src/styles/custom.css */
 
+:root {
+  /* Default is roughly 60rem. Let's make it wider. */
+  /* --sl-content-width: 100%; */
+  /* ✅ NEW: 100% minus a safety gap for the scrollbar */
+  --sl-content-width: calc(100% - 3rem);
+
+  /* Optional: Shrink the sidebars to give the middle more room */
+  --sl-sidebar-width: 14rem;
+
+  /* Increase the base size of the whole website */
+  /* font-size: 18px; Try 17px, 18px, or 20px */
+  font-size: 18px;
+}
+
+/* Target the Right Sidebar (TOC) container specifically */
+.right-sidebar-container {
+  /* 1. Force it to match the Left Sidebar's width variable */
+  width: var(--sl-sidebar-width) !important;
+
+  /* 2. Prevent it from shrinking if the screen gets tight */
+  min-width: var(--sl-sidebar-width) !important;
+  flex-basis: var(--sl-sidebar-width) !important;
+
+  /* 3. Ensure it stays on screen (fixes the scrollbar issue too) */
+  padding-right: 1rem !important;
+}
+
+.sidebar-content {
+  /* 1. Control Top and Bottom padding */
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+
+  /* 2. Control Left and Right padding */
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+
+  /* Or set them all at once: padding: 1rem 1.5rem; */
+}
+
+.content-panel {
+  /* 1. Control Top and Bottom padding */
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+
+  /* 2. Control Left and Right padding */
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+
+  /* Or set them all at once: padding: 1rem 1.5rem; */
+}
+
+/* 1. Target tables inside the content area */
+.sl-markdown-content table {
+  width: 100%;
+  border-collapse: collapse; /* Crucial for merged cells to look clean */
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem; /* Slight size adjustment for data density */
+}
+
+/* 2. Style Headers (th) */
+.sl-markdown-content th {
+  background-color: var(--sl-color-gray-6); /* Subtle background */
+  color: var(--sl-color-white);
+  font-weight: 600;
+  text-align: left; /* Or center if you prefer */
+  padding: 12px 15px;
+  border: 1px solid var(--sl-color-hairline); /* Adaptive border */
+}
+
+/* 3. Style Data Cells (td) */
+.sl-markdown-content td {
+  padding: 10px 15px;
+  border: 1px solid var(--sl-color-hairline);
+  vertical-align: middle; /* Centers text vertically in merged rows */
+}
+
+/* 4. Zebra Striping (Optional: makes reading rows easier) */
+
+/* 5. Hover Effect (Optional: highlights row on mouseover) */
+.sl-markdown-content tr:hover td {
+  background-color: var(--sl-color-gray-5);
+}
+
+html {
+  /* This reserves space for the scrollbar so content doesn't slide under it */
+  scrollbar-gutter: stable;
+}
+
 /* 1. Set the header height to 35px */
 html[data-theme="light"] {
   --sl-nav-height: 40px;
 }
 html[data-theme="dark"] {
   --sl-nav-height: 40px;
+}
+
+/* Hides the first item in the Table of Contents (Right Sidebar) */
+/* starlight-toc li:first-child {
+  display: none;
+} */
+
+/* Target any SVG icon inside a paragraph */
+.sl-markdown-content p svg {
+  display: inline-block; /* Sit on the line like a letter */
+  vertical-align: middle; /* Align with the middle of the text */
+  transform: translateY(-2px); /* Tiny adjustment to center it perfectly */
+}
+
+.sl-container {
+  margin: 16px !important;
+}
+
+/* src/styles/custom.css */
+.search-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #var(--sl-color-gray-5);
+  border-radius: 4px;
+  background-color: var(--sl-color-black);
+  color: var(--sl-color-white);
 }
 
 /* * 2. Set ALL header buttons to 25px
@@ -29,3 +144,29 @@ header button.search-toggle svg {
   height: 18px;
   width: 18px;
 }
+
+/* Side by side layout - Start */
+.split-container {
+  display: flex;
+  gap: 2rem; /* Space between image and text */
+  align-items: center; /* Vertically center the content */
+}
+
+.split-container .image-side {
+  flex: 0 0 40%; /* Image takes 40% width. Adjust as needed. */
+}
+
+.split-container .text-side {
+  flex: 1; /* Text takes the remaining space */
+}
+
+/* On mobile/tablets, stack them vertically */
+@media (max-width: 50rem) {
+  .split-container {
+    flex-direction: column;
+  }
+  .split-container .image-side {
+    width: 100%; /* Image becomes full width */
+  }
+}
+/* Side by side layout - End */

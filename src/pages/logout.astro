@@ -1,0 +1,19 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<StarlightPage frontmatter={{ title: 'Logging out...', template: 'splash' }}>
+  <p>Please wait...</p>
+
+  <script define:vars={{ base }}>
+    // 1. Clear the Auth Data
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentRole');
+
+    // 2. Redirect to Login (handling the base path correctly)
+    // Remove trailing slash from base if it exists
+    const cleanBase = base.replace(/\/$/, "");
+    window.location.href = cleanBase + '/login';
+  </script>
+</StarlightPage>

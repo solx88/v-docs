@@ -1,0 +1,220 @@
+---
+title: Jasper
+slug: phieuinbaocao/jasper # <--- This forces the URL
+description: Giới thiệu Jasper.
+sidebar:
+  order: 3
+
+# Enable TOC just for this page
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
+---
+
+import { Image } from "astro:assets";
+import { Steps } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
+import cau_hinh_oracle_datasource_1 from "@/assets/cau_hinh_oracle_datasource_1.png";
+import cau_hinh_oracle_datasource_2 from "@/assets/cau_hinh_oracle_datasource_2.png";
+import cau_hinh_oracle_datasource_3 from "@/assets/cau_hinh_oracle_datasource_3.png";
+
+## Cấu hình reprot datasource
+
+Phần mềm sẽ sử dụng `Oracle datasource` cho phiếu in, báo cáo; `XML datasource` cho các phiếu ký số.
+
+### Oracle Datasource
+
+<div class="split-container">
+  <div class="text-side">
+  <Steps>
+
+1. Trên menu ấn vào nút `Report Datasources`
+
+2. Bấm nút `New`
+3. Chọn `Database JDBC connection` và ấn `Next`
+4. Điền các thông tin<br/>
+   - `Name`: tên Connection, đặt tùy ý<br/>
+   - `JDBC Driver`: Chọn `Oracle (oracle.jdbc.driver.OracleDriver)` <br/>
+   - `JDBC URL`: địa chỉ DB<br/>
+     Ấn nút `Test` để kiểm tra, nếu hiện thông báo thành công thì ấn `Save` để lưu lại
+
+</Steps>
+</div>
+
+{" "}
+
+{" "}
+
+<div class="image-side">
+  <Image src={cau_hinh_oracle_datasource_1} alt="Description" />
+  <Image src={cau_hinh_oracle_datasource_2} alt="Description" />
+</div>
+
+</div>
+
+### XML Datasource
+
+<div class="split-container">
+  <div class="text-side">
+  <Steps>
+
+1. Trên menu ấn vào nút `Report Datasources`
+
+2. Bấm nút `New`
+3. Chọn `XML file datasource` và ấn `Next`
+4. Điền các thông tin<br/>
+   - `Name`: tên Connection, đặt tùy ý<br/>
+   - `XML`: Bấm `Browser` và chọn đến file XML <br/>
+   - Tích chọn `Use the report XPath expression when filling the report`<br/>
+     Ấn nút `Test` để kiểm tra, nếu hiện thông báo thành công thì ấn `Save` để lưu lại
+
+</Steps>
+<Aside type="caution">Mỗi lần chạy file XML khác thì phải chọn lại file XML.</Aside>
+</div>
+
+{" "}
+
+{" "}
+
+<div class="image-side">
+  <Image src={cau_hinh_oracle_datasource_1} alt="Description" />
+  <Image src={cau_hinh_oracle_datasource_3} alt="Description" />
+</div>
+
+</div>
+
+## Parameters
+
+Phiếu in và báo cáo sẽ nhận parameters từ HIS để lấy dữ liệu từ DB. Các phiếu ký số sẽ lấy dữ liệu trực tiếp từ XML, không cần parameters.
+
+### Tham số mặc định
+
+Khi HIS gọi đến Jasper sẽ truyền các tham số mặc định:
+
+- [UID]: User ID của người dùng hiện tại
+- [HID]: Hospital ID của đơn vị hiện tại
+- [SCH]: Schema của đơn vị hiện tại
+- [IP]: Địa chỉ IP của máy client
+- parent_name: tên đơn vị chủ quản của bệnh viện
+- org_name: tên bệnh viện
+- org_tel: số điện thoại bệnh viện
+- DPAR_ORG_LOGO: logo bệnh viện
+- dept_name: tên khoa phòng hiện tại
+
+### Tham số phiếu in
+
+Tham số của phiếu in phải mặc định theo chức năng in phiếu. Xem thông tin tại [Cấu hình tham số](/v-docs/phieuinbaocao/cauhinh/#cấu-hình-tham-số-đầu-vào)
+
+### Tham số báo cáo
+
+Tham số của báo cáo phải khớp với tham số đã khai báo trên HIS.
+
+<div class="sl-markdown-content">
+  <table>
+    <thead>
+      <tr>
+        <th>Tham số HIS</th>
+        <th>Tham số Jasper</th>
+        <th>Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2">VPARS_`param`</td>
+        <td>`param`</td>
+        <td>Lấy id của tham số, tương ứng với tham số 1 giá trị</td>
+      </tr>
+      <tr>
+        <td>`param`_TEXT</td>
+        <td>Lấy name của tham số, tương ứng với tham số 1 giá trị</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <td rowspan="2">VPARS_`param`</td>
+        <td>VPARS_`param`_VALUE</td>
+        <td>Lấy id của tham số, tương ứng với tham số nhiều giá trị</td>
+      </tr>
+      <tr>
+        <td>VPARS_`param`_TEXT</td>
+        <td>Lấy name của tham số, tương ứng với tham số nhiều giá trị</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<Aside type="caution">
+  Khi lấy name của tham số, nếu dài quá phần mềm sẽ tự động cắt ngắn và thêm ...
+</Aside>
+
+## Fields
+
+Phần này sẽ khai báo các trường dữ liệu dùng trong báo cáo, các trường dữ liệu này sẽ lấy từ datasource đã cấu hình.
+
+<div class="sl-markdown-content">
+  <table>
+    <thead>
+      <tr>
+        <th>---</th>
+        <th>Phiếu in báo cáo</th>
+        <th>Phiếu ký số</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tên fields</td>
+        <td>Phải khớp với các column từ SQL</td>
+        <td>Có thể đặt tên tùy ý</td>
+      </tr>
+      <tr>
+        <td>Kiểu giá trị</td>
+        <td colspan="2">Phải khớp với dữ liệu từ datasource</td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>Không cần</td>
+        <td>Khai báo đưỡng dẫn để lấy dữ liệu từ XML</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Aside type="note">
+  Mỗi lần chạy file XML khác thì phải chọn lại file XML.
+</Aside>
+
+## Variables
+
+Jasper sẽ có sẵn các variables mặc định:
+
+- PAGE_NUMBER: Số trang hiện tại
+- REPORT_COUNT: Số bản ghi hiện tại trong báo cáo
+- `group name`\_COUNT: Số bản ghi hiện tại trong nhóm
+
+Ngoài ra có thể tự tạo các variables tùy ý để sử dụng trong báo cáo. Thông thường sẽ tạo variables để tính tổng số lượng, thành tiền của một nhóm hoặc toàn báo cáo.
+
+<Aside type="note">
+  Nên đặt tên các variables có ý nghĩa để dễ quản lý.
+  <br /> GRP_KHOA_SL: số lượng theo group khoa
+  <br /> GRP_PHONG_SL: số lượng theo group phòng
+  <br /> TOTAL_SL: tổng số lượng toàn báo cáo
+</Aside>
+
+## Band
+
+## Report Elements
+
+Vào Window -> Pallette để mở bảng pallette, từ đây có thể kéo thả các `report elements` vào report để sử dụng. Thường sẽ sử dụng các elements như `Static Text`, `Text Field`, `Frame`.
+
+### Static Text
+
+### Text Field
+
+### Frame
+
+### Break
+
+### Subreport
+
+### Table
+
+### Crosstab

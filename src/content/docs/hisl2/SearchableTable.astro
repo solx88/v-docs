@@ -1,0 +1,81 @@
+---
+// 1. Receive the data passed from the parent file
+const { data } = Astro.props;
+---
+
+<div class="search-container">
+  <input 
+    type="text" 
+    id="tableSearch" 
+    class="search-input" 
+    placeholder="🔍 Search..." 
+  />
+</div>
+
+<table id="myTable">
+  <colgroup>
+    <col style="width: 30%;" /> 
+    <col style="width: 60%;" /> 
+    <col style="width: 10%;" /> 
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Mã cấu hình</th>
+      <th>Mô tả</th>
+      <th>Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data.map((row) => (
+      <tr>
+        <td style="overflow-wrap: anywhere; word-break: break-word;">{row.mach}</td>
+        <td style="white-space: pre-wrap;">{row.mota}</td>
+        <td>{row.tag}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  .search-input {
+    width: 100%;
+    padding: 2px;
+    margin-bottom: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  table {
+    display: table; /* 👈 THIS IS KEY: Overrides default "block" scrolling behavior */
+    table-layout: fixed;
+    width: 100%;
+    
+    /* Optional: Ensures it doesn't overflow its container */
+    box-sizing: border-box; 
+  }
+</style>
+
+<script>
+  const input = document.getElementById('tableSearch');
+  let timeout = null;
+
+  input.addEventListener('keyup', function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("myTable");
+      const tr = table.getElementsByTagName("tr");
+
+      for (let i = 0; i < tr.length; i++) {
+        if (tr[i].getElementsByTagName("td").length > 0) {
+          const rowText = tr[i].textContent || tr[i].innerText;
+          if (rowText.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }, 300);
+  });
+</script>
