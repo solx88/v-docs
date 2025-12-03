@@ -4,6 +4,9 @@ slug: phieuinbaocao/jasper_advance # <--- This forces the URL
 description: Giới thiệu Jasper Advance
 sidebar:
   order: 4
+  badge:
+    text: New
+    variant: tip # Green
 
 # Enable TOC just for this page
 tableOfContents:
@@ -11,16 +14,40 @@ tableOfContents:
   maxHeadingLevel: 3
 ---
 
-Nothing too see here
+## Report Properties
 
-<video
-  autoplay
-  loop
-  playsinline
-  style="
-    height: 450px !important; /* 👈 Force the height */
-    object-fit: cover;        /* 👈 Prevents squishing/stretching */
-  "
->
-  <source src="/v-docs/work_hard.webm" type="video/webm" />
-</video>
+Một số thuộc tính của Report có thể cấu hình trong phần `Properties` của Report. Chọn báo cáo, ở tab `Properties` kéo xuống phần `Properties` và ấn nút `...` hoặc vào phần XML, thêm vào sau tag `<jasperReport>`.
+
+```xml mark="xls" mark="xlsx" mark="pageHeader" mark="pageFooter"
+// Loại bỏ khoảng trắng thừa giữa các hàng khi xuất xls hoặc xlsx
+<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+<property name="net.sf.jasperreports.export.xlsx.remove.empty.space.between.rows" value="true"/>
+
+// Loại bỏ pageHeader và pageFooter khi xuất xls
+<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+
+// Chỉ in columnHeader lần đầu tiên khi xuất xls hoặc xlsx
+<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+<property name="net.sf.jasperreports.export.xlsx.exclude.origin.keep.first.band.1" value="columnHeader"/>
+```
+
+## Subreport
+
+Subreport là một báo cáo con được nhúng trong báo cáo chính (main report). Thường subreport sẽ được dùng trong các trường hợp sau:
+
+- Báo cáo rất phức tạp, cần chia nhỏ thành các phần để dễ quản lý.
+- Cách hiển thị khác nhau tùy vào dữ liệu. Ví dụ kết quả CDHA, nếu là table thì hiển thị bằng `html elements`, nếu không thì hiển thị bằng `text field`.
+
+## Cross Tab
+
+Với các báo cáo thông thường, số cột dữ liệu là đã xác định trước và không thay đổi. Tuy nhiên, một số báo cáo sẽ có các cột thay đổi theo dữ liệu, khi đó sẽ cần sử dụng đến **Cross Tab**.<br/>
+Ví dụ: bảng công khai dịch vụ, bệnh nhân dùng dịch vụ 2 ngày thì sẽ có 2 cột, bệnh nhân dùng dịch vụ 15 ngày thì sẽ có 15 cột.
+
+## Tip
+
+- Chuyển số thành số la mã
+
+```java del="value"
+com.lowagie.text.factories.RomanNumberFactory.getUpperCaseString(value)
+```

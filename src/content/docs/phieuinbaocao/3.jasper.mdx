@@ -4,6 +4,9 @@ slug: phieuinbaocao/jasper # <--- This forces the URL
 description: Giới thiệu Jasper.
 sidebar:
   order: 3
+  badge:
+    text: Updated
+    variant: caution
 
 # Enable TOC just for this page
 tableOfContents:
@@ -178,10 +181,6 @@ Phần này sẽ khai báo các trường dữ liệu dùng trong báo cáo, cá
   </table>
 </div>
 
-<Aside type="note">
-  Mỗi lần chạy file XML khác thì phải chọn lại file XML.
-</Aside>
-
 ## Variables
 
 Jasper sẽ có sẵn các variables mặc định:
@@ -201,20 +200,53 @@ Ngoài ra có thể tự tạo các variables tùy ý để sử dụng trong b�
 
 ## Band
 
+- **Title**: in ở trang đầu tiên của báo cáo
+- **Page Header**: in ở đầu mỗi trang, rất ít khi dùng
+- **Column Header**: in ở đầu mỗi cột dữ liệu, thường dùng để in tiêu đề bảng
+- **Detail**: in dữ liệu chính của báo cáo, mỗi bản ghi sẽ in một lần
+- **Column Footer**: in ở cuối mỗi cột dữ liệu, thường dùng để in tổng của bảng
+- **Page Footer**: in ở cuối mỗi trang, thường dùng để in số trang
+- **Last Page Footer**: in ở cuối trang cuối cùng của báo cáo
+- **Summary**: in ở cuối báo cáo, thường dùng để in tổng kết báo cáo
+- **No Data**: in khi báo cáo không có dữ liệu
+- **Background**: in ở phía sau tất cả các band khác, rất ít khi dùng
+- **Group Header/Footer**: in ở đầu/cuối mỗi nhóm, thường dùng để in tiêu đề nhóm và tổng kết nhóm
+
+<Aside type="note" title="Group">
+
+- Một báo cáo có thể có nhiều group khác nhau, group tạo trước sẽ là group cha. Mỗi group sẽ có group header/footer riêng.
+- Jasper sẽ không sắp xếp lại dữ liệu nên khi tạo group cần đảm bảo dữ liệu được sắp xếp khớp với group. Ví dụ nếu dữ liệu là A A B A thì jasper sẽ tạo ra group A B và tiếp đến là A.
+
+</Aside>
+
 ## Report Elements
 
 Vào Window -> Pallette để mở bảng pallette, từ đây có thể kéo thả các `report elements` vào report để sử dụng. Thường sẽ sử dụng các elements như `Static Text`, `Text Field`, `Frame`.
 
-### Static Text
+Khi sử dụng các elements, cần để ý một số thuốc tính sau:
 
-### Text Field
+- **Possition Type**: Thường chọn `Float` để không bị chồng chéo lên các elements khác khi dữ liệu thay đổi kích thước.
+- **Stretch Type**: Đối với các elemtents trong `Detail Band`, nên chọn `Relative to Band Height` để các elements có thể tự động co dãn theo chiều cao của band. Tương tự đối với các elements trong `Group Header/Footer` hoặc `Frame`.
+- **Print When Expression**: Sử dụng để điều kiện hiển thị của element. Ví dụ chỉ in khi có dữ liệu, hoặc chỉ in khi là trang cuối cùng.
+- **Pattern**: Định dạng hiển thị của dữ liệu. Ví dụ định dạng ngày tháng, số tiền, phần trăm.
+- **Pattern Expression**: Sử dụng để định dạng động. Ví dụ định dạng số tiền theo tham số đầu vào.<br/>
 
-### Frame
+  ```java
 
-### Break
+  // Nếu là số thập phân thì hiển thị phần thập phân, nếu không thì hiển thị số nguyên
+  ($F{DONGIA}.remainder(new BigDecimal(1))).compareTo(BigDecimal.ZERO) == 0 ? "#,##0":"#,##0.00"
+  ```
 
-### Subreport
+- **Blank When Null**: Chọn `true` để khi giá trị là null thì không hiển thị gì.
+- **Stretch With Overflow**: Chọn `true` để khi dữ liệu vượt quá kích thước của element thì element sẽ tự động mở rộng để hiển thị hết dữ liệu.
+- **Evaluation Time**: Thời điểm lấy giá trị của element. Thường sử dụng `Now` để lấy giá trị ngay lập tức. Đối với các elements trong `Group Footer` hoặc `Summary` thì sử dụng `Group` hoặc `Report` để lấy giá trị sau khi tính toán xong.
+- **Evaluation Group**: Chọn group tương ứng khi `Evaluation Time` là `Group`.
+- **Markup**: Có thể chọn `HTML`, `styled` để hiển thị theo định dạng tương ứng.
+- **Left/Right Indent**: Thường để 2 để tránh việc chữ bị dính sát vào viền.
 
-### Table
+### Report Properties
 
-### Crosstab
+- Nên để report theo các định dạng chuẩn A4, A5 để dễ in ấn.
+- **Report Name**: nên đặt theo tên của file jasper để dễ quản lý.
+- **Ignore Pagination**: Nếu chọn `true` thì báo cáo sẽ không phân trang.
+- **When No Data**: Chọn `All Sections, No Detail` để in các band ngay cả khi không có dữ liệu.

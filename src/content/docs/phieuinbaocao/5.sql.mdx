@@ -1,0 +1,192 @@
+---
+title: SQL
+slug: phieuinbaocao/sql # <--- This forces the URL
+description: Giới thiệu SQL
+sidebar:
+  order: 5
+  badge:
+    text: New
+    variant: tip # Green
+
+# Enable TOC just for this page
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
+---
+
+## Tổng quan
+
+- Khi gọi đến sql thì cần phải khớp thứ tự và kiểu dữ liệu. Không cần phải khớp tên biến.
+- Khi up code lên site thật cần chú ý:<br/>
+  Kiểm tra hard code `HID` `SCH`<br/>
+  Thêm `/` vào cuối file<br/>
+  Xóa các dòng `DBMS`<br/>
+  Với các file có chứa ký tự `&` thì thêm `SET DEFINE OFF;` vào đầu file.
+
+## Log
+
+**Thêm chức năng ghi log vào procedure/function**
+
+```sql
+create or replace PROCEDURE PHIEULINHHOANTRA_TVT_HTH(
+    i_uid           VARCHAR2,
+    i_hid           VARCHAR2,
+    i_sch           VARCHAR2,
+    i_ip            VARCHAR2,
+    i_nhapxuatid    VARCHAR2,
+    cur OUT sys_refcursor
+)  IS
+    p_fnc  VARCHAR2(200) := 'PHIEULINHHOANTRA_TVT_TT_HTH';
+
+    plog CLOB; -- Khai báo biến ghi log
+BEGIN
+    plog := p_fnc || '|| Start i_nhapxuatid ' ||i_nhapxuatid; -- Lưu lại thông tin
+
+    -- .... Xử lý logic của procedure/function
+
+    -- Ghi log thành công
+    plog := plog || '<br> END SUCCESS';
+    ulog.plog.error1(plog);
+EXCEPTION
+    WHEN OTHERS
+    THEN
+        DECLARE
+            r_err   VARCHAR2 (500);
+        BEGIN
+            r_err := TO_CHAR (SQLCODE) || ':' || SQLERRM;
+            plog := plog || '<br> r_err: ' || r_err;
+            ulog.plog.error1(plog); -- Ghi log lỗi
+        END;
+END;
+```
+
+**Xem log**<br/>
+Link: https://bvhatinh.vncare.vn/vnpthis/main/manager.jsp?func=../danhmuc/DMC_TraCuuLogFunc<br/>
+Truy cập vào link và điền tên function vào ô `Tên hàm`, sau đó ấn nút `Tìm kiếm` để xem log.
+
+## Database
+
+### Trạng thái dữ liệu
+
+Các giá trị trạng thái của dữ liệu được quy định trong bảng `dmc_loai_trangthai` và `dmc_trangthai`
+
+```sql
+SELECT *
+FROM HIS_COMMON.dmc_loai_trangthai
+ORDER BY loai_id;
+```
+
+**Result:**
+
+| LOAI_ID | TENLOAI         | GHICHU          | DAXOA |
+| :------ | :-------------- | :-------------- | :---: |
+| 1       | GioiTinh        | GioiTinh        |   0   |
+| 2       | HC_TonGiao      | HC_TonGiao      |   0   |
+| 3       | HinhThucRaVien  | HinhThucRaVien  |   0   |
+| 4       | HinhThucVaoVien | HinhThucVaoVien |   0   |
+| 5       | HinhThucXuTri   | HinhThucXuTri   |   0   |
+| 6       | ...             | ...             |  ...  |
+
+```sql
+SELECT trangthai_id, ten_trangthai
+FROM HIS_COMMON.dmc_trangthai
+WHERE loai_id = 3;
+```
+
+**Result:**
+
+| TRANGTHAI_ID | TEN_TRANGTHAI      |
+| :----------- | :----------------- |
+| 1            | Ra viện            |
+| 2            | Xin về             |
+| 3            | Bỏ về              |
+| 4            | Đưa về             |
+| 5            | Chuyển khoa        |
+| 6            | Chuyển viện        |
+| 7            | Tử vong            |
+| 8            | Hẹn                |
+| 9            | Khác               |
+| 10           | Hẹn khám mới       |
+| 11           | Tiên lượng tử vong |
+
+### Các bảng trạng thái khác
+
+- his_common.dmc_nhom_mabhyt
+- his_common.duc_hinhthuc
+- his_common.duc_loaiphieu
+- HIS_COMMON.dmc_doituong_benhnhan
+
+### Các function hữu ích
+
+- Lấy giá trị cấu hình
+
+```sql
+com_lay_cauhinh(i_hid VARCHAR2, i_cauhinh VARCHAR2)
+```
+
+- Chuyển số thành chữ, không đọc số thập phân
+
+```sql
+com_lay_cauhinh(i_hid VARCHAR2, i_cauhinh VARCHAR2)
+```
+
+- Chuyển số thành chữ, đọc số thập phân
+
+```sql
+com_read_number_comma(i_hid VARCHAR2, i_cauhinh VARCHAR2)
+```
+
+## Câu lệnh SQL
+
+- Nên viết câu lệnh SQL theo chuẩn ANSI-92 thay vì ANSI-89: điều kiện join và điều kiện lọc dữ liệu tách ra khiến việc đọc hiểu và bảo trì dễ dàng hơn.
+
+```sql ins="ANSI-92"
+ANSI-92
+SELECT e.name, d.dept_name
+FROM employees e
+JOIN departments d ON e.dept_id = d.id  -- Điều kiện JOIN nằm ở đây
+WHERE d.dept_name = 'IT';               -- Điều kiện LỌC nằm ở đây
+```
+
+```sql del="ANSI-89"
+ANSI-89
+SELECT e.name, d.dept_name
+FROM employees e, departments d         -- Liệt kê bảng
+WHERE e.dept_id = d.id                  -- Điều kiện JOIN trộn lẫn
+  AND d.dept_name = 'IT';               -- Điều kiện LỌC trộn lẫn
+```
+
+- Nên đặt bảng chính ở đầu câu lệnh FROM để dễ đọc hiểu.
+
+- Nên đặt alias dễ hiểu
+  :::danger[Bad]
+
+  ```sql
+  from
+                      ' || i_sch || '.KBH_MAUBENHPHAM km ,' ||
+           i_sch || '.kbh_tiepnhan kt,
+                      ' || i_sch || '.DMC_BENHNHAN db, ' || i_sch ||
+           '.KBH_BHYT kb,
+                      HIS_COMMON.ORG_ORGANIZATION oo,
+                      HIS_COMMON.ORG_ORGANIZATION oo1,
+                      HIS_COMMON.ORG_ORGANIZATION oo2,
+                      HIS_COMMON.ORG_ORGANIZATION oo3,
+  ```
+
+  :::
+
+  :::tip[Good]
+
+  ```sql
+  from
+      '||i_sch||'.KBH_MAUBENHPHAM mbp ,     -- mẫu bệnh phẩm
+      '||i_sch||'.kbh_tiepnhan tn,          -- tiếp nhận
+      '||i_sch||'.DMC_BENHNHAN bn,          -- bệnh nhân
+      '||i_sch||'.KBH_BHYT bhyt,            -- bảo hiểm y tế
+      HIS_COMMON.ORG_ORGANIZATION khoacd,   -- khoa chỉ định
+      HIS_COMMON.ORG_ORGANIZATION phongcd,  -- phòng chỉ định
+      HIS_COMMON.ORG_ORGANIZATION khoath,   -- khoa thực hiện
+      HIS_COMMON.ORG_ORGANIZATION phongth,  -- phòng thực hiện
+  ```
+
+  :::
