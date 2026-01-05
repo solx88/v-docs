@@ -1,0 +1,95 @@
+---
+title: Tự động trừ tvt đi kèm CLS
+slug: hisl2-duoc/tudongtrutvt
+description: Tự động trừ tvt đi kèm CLS
+sidebar:
+  order: 1
+  badge:
+    text: New
+    variant: tip
+
+# Enable TOC just for this page
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
+---
+
+import tudongtrutvt_01 from "@/assets/tudongtrutvt_01.png";
+import tudongtrutvt_02 from "@/assets/tudongtrutvt_02.png";
+import tudongtrutvt_03 from "@/assets/tudongtrutvt_03.png";
+import { Aside } from "@astrojs/starlight/components";
+import { Image } from "astro:assets";
+
+## Mô tả chức năng
+
+Đây là chức năng tự động tạo phiếu thuốc vật tư đi kèm khi thực hiện các dịch vụ cận lâm sàng. Lưu ý:
+
+- Chức năng này chỉ áp dụng cho xét nghiệm, CDHA, không dùng cho PTTT.
+- Thuốc vật tư sẽ được trừ tự động khi trả kết quả dịch vụ cận lâm sàng.
+- Chỉ trừ thuốc vật tư trong tủ trực của khoa thực hiện (không áp dụng kho hoặc tủ trự các khoa khác).
+- Chỉ trừ nếu thuốc vật tư còn tồn trong kho và còn hạn sử dụng. Những thuốc vật tư không còn tồn hoặc còn tồn nhưng quá hạn sử dụng sẽ bị bỏ qua.
+
+## Cấu hình hệ thống
+
+Phần này VNPT sẽ thực hiện, nếu cần sử dụng chức năng này, vui lòng liên hệ VNPT để được hỗ trợ.
+
+<table>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Mã cấu hình</th>
+      <th>Mô tả</th>
+      <th>Giá trị</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>XN_TUDONG_TAOPHIEUTHUOC</td>
+      <td>
+        Tự động tạo phiếu thuốc đi kèm khi trả kết quả đối với dịch vụ xét
+        nghiệm
+      </td>
+      <td rowspan="3">
+        1: Tự động tạo phiếu
+        <br />
+        0: không tự động
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>CDHA_TUDONG_TAOPHIEUTHUOC</td>
+      <td>
+        Tự động tạo phiếu thuốc đi kèm khi trả kết quả đối với dịch vụ CĐHA
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>RIS_TUDONG_TAOPHIEUTHUOC</td>
+      <td>Tự động tạo phiếu thuốc vật tư đi kèm khi trả kết quả từ RIS</td>
+    </tr>
+  </tbody>
+</table>
+
+<Aside type="caution">Lưu ý phân quyền menu</Aside>
+
+## Cấu hình trừ tvt theo dịch vụ
+
+Anh chị đăng nhập, vào menu `Dược -> Danh mục thuốc vật tư đi kèm dịch vụ`<br/>
+Link: https://bvhatinh.vncare.vn/vnpthis/main/manager.jsp?func=../ngoaitru/NGT02K098_DM_ThuocKemDV
+
+Các bước thực hiện:
+
+1. Chọn loại dịch vụ
+2. Chọn dịch vụ cần cấu hình
+3. Chọn thuốc vật tư đi kèm, điền số lượng, cách dùng, ấn enter để thêm
+4. Danh sách thuốc vật tư đi kèm sẽ hiển thị bên dưới
+5. Ấn Lưu để hoàn tất
+   <Image src={tudongtrutvt_01} alt="Description" />
+
+## Hoạt động
+
+Khi bác sĩ trả kết quả dịch vụ, hệ thống sẽ tự động tạo phiếu thuốc vật tư đi kèm. Bác sĩ có thể kiểm tra các phiếu đi kèm bằng cách vào menu trả kết quả, chọn phiếu và xem danh sách phiếu thuốc vật tư đi kèm; Hoặc bác sĩ có thể vào menu khám bệnh/điều trị nội trú để kiểm tra.
+
+<Image src={tudongtrutvt_02} alt="Description" />
+<Image src={tudongtrutvt_03} alt="Description" />

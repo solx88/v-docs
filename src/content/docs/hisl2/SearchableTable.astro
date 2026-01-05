@@ -26,7 +26,7 @@ const { data } = Astro.props;
     </tr>
   </thead>
   <tbody>
-    {data.map((row) => (
+    {data.map((row: { mach: string; mota: string; tag: string }) => (
       <tr>
         <td style="overflow-wrap: anywhere; word-break: break-word;">{row.mach}</td>
         <td style="white-space: pre-wrap;">{row.mota}</td>
@@ -56,15 +56,15 @@ const { data } = Astro.props;
 </style>
 
 <script>
-  const input = document.getElementById('tableSearch');
-  let timeout = null;
+  const input = document.getElementById('tableSearch') as HTMLInputElement;
+  let timeout: NodeJS.Timeout | undefined;
 
-  input.addEventListener('keyup', function() {
+  input?.addEventListener('keyup', function() {
     clearTimeout(timeout);
     timeout = setTimeout(function() {
       const filter = input.value.toUpperCase();
       const table = document.getElementById("myTable");
-      const tr = table.getElementsByTagName("tr");
+      const tr = table!.getElementsByTagName("tr");
 
       for (let i = 0; i < tr.length; i++) {
         if (tr[i].getElementsByTagName("td").length > 0) {

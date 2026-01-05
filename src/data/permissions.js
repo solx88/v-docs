@@ -3,8 +3,8 @@ export const permissions = {
 
   "/phieuinbaocao/": ["lva", "sys.admin"],
   "/hisl2/": ["lva", "sys.admin", "admin"],
-  "/hisl2duoc/": ["lva", "sys.admin", "admin", "benhvien"],
-  "/hisl2cls/": ["lva", "sys.admin", "admin", "benhvien"],
+  "/hisl2-duoc/": ["lva", "sys.admin", "admin", "benhvien"],
+  "/hisl2-cls/": ["lva", "sys.admin", "admin", "benhvien"],
 
   "/guides/": ["lva", "sys.admin"],
   "/reference/": ["lva", "sys.admin"],

@@ -1,8 +1,8 @@
 // @ts-check
-import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import starlightThemeRapide from "starlight-theme-rapide";
+import { defineConfig } from "astro/config";
 import starlightImageZoom from "starlight-image-zoom";
+import starlightThemeRapide from "starlight-theme-rapide";
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,11 +39,11 @@ export default defineConfig({
         },
         {
           label: "HIS Dược",
-          autogenerate: { directory: "hisl2duoc" },
+          autogenerate: { directory: "hisl2-duoc" },
         },
         {
           label: "HIS CLS",
-          autogenerate: { directory: "hisl2cls" },
+          autogenerate: { directory: "hisl2-cls" },
         },
         {
           label: "Guides",
